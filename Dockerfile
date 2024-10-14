@@ -1,15 +1,15 @@
 FROM ubuntu:latest AS build
 
-ARG DATABASE_USERNAME
-ARG DATABASE_PASSWORD
-ARG DATABASE_URL
+ARG DATABASE_USERNAME=mockUser
+ARG DATABASE_PASSWORD=mockPassword
+ARG DATABASE_URL=mockUrl
 
 RUN apt-get update
 RUN apt-get install openjdk-17-jdk -y
 COPY . .
 
 RUN apt-get install maven -y
-RUN mvn clean install
+RUN mvn clean install -Dspring.datasource.username=$DATABASE_USERNAME -Dspring.datasource.password=$DATABASE_PASSWORD -Dspring.datasource.url=$DATABASE_URL
 
 FROM openjdk:17-jdk-slim
 
