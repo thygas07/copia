@@ -2,7 +2,7 @@ FROM ubuntu:latest AS build
 
 ARG DATABASE_USERNAME=mockUser
 ARG DATABASE_PASSWORD=mockPassword
-ARG DATABASE_URL=mockUrl
+ARG DATABASE_URL=jdbc:mysql://mockUrl:3306/mockDb
 
 RUN apt-get update
 RUN apt-get install openjdk-17-jdk -y
